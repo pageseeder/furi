@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.pageseeder.furi</groupId>
+  <artifactId>wo-furi</artifactId>
+  <version>0.9.0</version>
+  <name>URI Templates</name>
+  <url>https://www.pageseeder.org/furi.html</url>
+  <description>A simple URI templates library implementation in Java</description>
+
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  
+   <developers>
+    <developer>
+      <name>Christophe Lauret</name>
+      <email>clauret@weborganic.com</email>
+      <organization>Allette Systems</organization>
+      <organizationUrl>http://www.allette.com.au</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git@github.com:pageseeder/wo-furi.git</connection>
+    <developerConnection>scm:git:git@github.com:pageseeder/wo-furi.git</developerConnection>
+    <url>git@github.com:pageseeder/wo-furi.git</url>
+  </scm>
+
+  <organization>
+    <name>Allette Systems</name>
+    <url>http://www.allette.com.au</url>
+  </organization>
+
+</project>
