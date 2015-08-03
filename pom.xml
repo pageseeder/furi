@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.pageseeder.furi</groupId>
-  <artifactId>wo-furi</artifactId>
+  <artifactId>pso-furi</artifactId>
   <version>0.9.0</version>
   <name>URI Templates</name>
   <url>https://www.pageseeder.org/furi.html</url>
@@ -24,9 +24,9 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git@github.com:pageseeder/wo-furi.git</connection>
-    <developerConnection>scm:git:git@github.com:pageseeder/wo-furi.git</developerConnection>
-    <url>git@github.com:pageseeder/wo-furi.git</url>
+    <connection>scm:git:git@github.com:pageseeder/furi.git</connection>
+    <developerConnection>scm:git:git@github.com:pageseeder/furi.git</developerConnection>
+    <url>git@github.com:pageseeder/furi.git</url>
   </scm>
 
   <organization>
@@ -35,12 +35,14 @@
   </organization>
 
   <dependencies>
-     <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>3.8.1</version>
-        <scope>test</scope>
-     </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
 </project>
