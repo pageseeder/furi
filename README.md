@@ -1,3 +1,5 @@
+[ ![Download](https://api.bintray.com/packages/pageseeder/maven/furi/images/download.svg) ](https://bintray.com/pageseeder/maven/furi/_latestVersion)
+
 # FURI
 
 This project is a Java implementation of URI templates and follows as close as possible the URI template notation 
