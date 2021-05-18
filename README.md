@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/pageseeder/maven/furi/images/download.svg) ](https://bintray.com/pageseeder/maven/furi/_latestVersion)
+[![Maven Central](https://img.shields.io/maven-central/v/org.pageseeder.furi/pso-furi.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22org.pageseeder.furi%22%20AND%20a:%22pso-furi%22)
 
 # FURI
 
