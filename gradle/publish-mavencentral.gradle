@@ -46,11 +46,6 @@ publishing {
               email 'clauret@weborganic.com'
             }
             developer {
-              id 'jbreure'
-              name 'Jean-Baptiste'
-              email 'jbreure@weborganic.com'
-            }
-            developer {
               id 'ccabral'
               name 'Carlos Cabral'
               email 'ccabral@allette.com.au'
