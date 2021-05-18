@@ -1,0 +1,91 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+apply plugin: 'io.codearte.nexus-staging'
+
+javadoc.options.addStringOption('Xdoclint:none', '-quiet')
+
+java {
+  withJavadocJar()
+  withSourcesJar()
+}
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+
+      pom.withXml {
+        asNode().children().last() + {
+          resolveStrategy = Closure.DELEGATE_FIRST
+          name        "$title"
+          description "$description"
+          url         "$website"
+
+          licenses {
+            license {
+              name 'The Apache Software License, Version 2.0'
+              url  'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
+          }
+
+          organization {
+            name 'Allette Systems'
+            url  'https://www.allette.com.au'
+          }
+
+          scm {
+            url                 "git@github.com:pageseeder/${gitName}.git"
+            connection          "scm:git:git@github.com:pageseeder/${gitName}.git"
+            developerConnection "scm:git:git@github.com:pageseeder/${gitName}.git"
+          }
+
+          developers {
+            developer {
+              id 'clauret'
+              name 'Christophe Lauret'
+              email 'clauret@weborganic.com'
+            }
+            developer {
+              id 'jbreure'
+              name 'Jean-Baptiste'
+              email 'jbreure@weborganic.com'
+            }
+            developer {
+              id 'ccabral'
+              name 'Carlos Cabral'
+              email 'ccabral@allette.com.au'
+            }
+          }
+
+        }
+      }
+
+    }
+  }
+
+  // The repository to publish to, Sonatype/MavenCentral
+  repositories {
+    maven {
+      def releaseRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+      def snapshotRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+      url = version.endsWith("SNAPSHOT") ? snapshotRepoUrl : releaseRepoUrl
+      name = "sonatype"
+      credentials {
+        username findProperty('sonatypeUsername')
+        password findProperty('sonatypePassword')
+      }
+    }
+  }
+}
+
+signing {
+  sign publishing.publications.mavenJava
+}
+
+nexusStaging {
+  packageGroup = group
+  stagingProfileId = findProperty('sonatypeStagingProfileId')
+  serverUrl = "https://s01.oss.sonatype.org/service/local/"
+  username = findProperty('sonatypeUsername')
+  password = findProperty('sonatypePassword')
+}
