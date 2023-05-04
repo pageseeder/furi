@@ -16,6 +16,8 @@
 package org.pageseeder.furi;
 
 import java.util.Arrays;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 import org.pageseeder.furi.Variable.Form;
 
@@ -66,7 +68,7 @@ public class VariableTest extends TestCase {
     Variable var = new Variable("name", null);
     assertEquals("", var.defaultValue());
     assertEquals(null, var.type());
-   // default value unspecified
+    // default value unspecified
     var = new Variable("name");
     assertEquals("", var.defaultValue());
     assertEquals(null, var.type());
@@ -209,6 +211,36 @@ public class VariableTest extends TestCase {
     assertArrayEquals(new String[] { "m", "n" }, new Variable("d", "x").values(params));
     assertArrayEquals(new String[] { "m", "", "n" }, new Variable("e").values(params));
     assertArrayEquals(new String[] { "m", "", "n" }, new Variable("e", "x").values(params));
+  }
+
+  /**
+   * Test long values (>~3500) do not cause StackOverflow exception
+   */
+  public void testIsValidValue_noStackOverflowErrorWithLargeValue() {
+    Random random = new Random();
+
+    StringBuilder valueBuilder = new StringBuilder();
+    IntStream.range(0, 3500).forEach(i -> valueBuilder.append(random.nextInt(9)));
+
+    boolean valid = Variable.isValidValue(valueBuilder.toString());
+    assertTrue(valid);
+  }
+
+  public void testIsValidValue_invalidValueFails() {
+    // Invalid encoding, "G" not in [0-9A-F]
+    String invalidEncoding1 = "12345%3G";
+    boolean invalidEncodingValid1 = Variable.isValidValue(invalidEncoding1);
+    assertFalse(invalidEncodingValid1);
+
+    // Invalid encoding, two of [0-9A-F] must follow "%"
+    String invalidEncoding2 = "12345%3";
+    boolean invalidEncoding2Valid = Variable.isValidValue(invalidEncoding2);
+    assertFalse(invalidEncoding2Valid);
+
+    // Invalid character, ":" not in [/w.~-]
+    String invalidCharacter = "1234:%2C";
+    boolean invalidCharacterValid = Variable.isValidValue(invalidCharacter);
+    assertFalse(invalidCharacterValid);
   }
 
   // private helpers
